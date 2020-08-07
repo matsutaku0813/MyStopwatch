@@ -6,7 +6,7 @@ body{
 
 .container{
   margin: 20px auto;
-  width: 270px;
+  width: 365px;
   background: #ffffff;
   padding: 15px;
   text-align: center;  
@@ -30,6 +30,11 @@ body{
   user-select: none;
 }
 
+.btn:active{
+    height: 40px;
+    margin-top: 5px;
+}
+
 .controls{
   display: flex;
   justify-content: space-between;
@@ -37,4 +42,19 @@ body{
 
 .inactive{
   opacity: 0.6;
+}
+
+.btn1{
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  background: #dddddd;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  margin: auto;
+}
+
+.recoad{
+  margin-top: 10px;
 }

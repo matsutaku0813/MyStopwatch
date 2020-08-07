@@ -4,6 +4,9 @@
   const start = document.getElementById('start');
   const stop = document.getElementById('stop');
   const reset = document.getElementById('reset');
+  const rap = document.getElementById('rap');
+  const recoad = document.getElementById('recoad');
+  const rapreset = document.getElementById('rapreset');
 
   let startTime;
   let timeoutId;
@@ -23,47 +26,69 @@
   }
 
   function setButtonStateInitial() {
-    start.classList.remove('inactive')
+    start.classList.remove('inactive');
     stop.classList.add('inactive');
     reset.classList.add('inactive');
+    rap.classList.add('inactive');
   }
   function setButtonStateRunning() {
     start.classList.add('inactive');
-    stop.classList.remove('inactive')
+    stop.classList.remove('inactive');
     reset.classList.add('inactive');
+    rap.classList.remove('inactive');
   }
   function setButtonStateStopped() {
-    start.classList.remove('inactive')
+    start.classList.remove('inactive');
     stop.classList.add('inactive');
-    reset.classList.remove('inactive')
+    reset.classList.remove('inactive');
+    rap.classList.remove('inactive');
   }
 
   setButtonStateInitial();
 
   start.addEventListener('click', () => {
-    if(start.classList.contains('inactive')===true){
+    if (start.classList.contains('inactive') === true) {
       return;
     }
     setButtonStateRunning();
     startTime = Date.now();
     countUp();
   });
-  
+
   stop.addEventListener('click', () => {
-    if(stop.classList.contains('inactive')===true){
+    if (stop.classList.contains('inactive') === true) {
       return;
     }
     setButtonStateStopped();
     clearTimeout(timeoutId);
     elapsedTime += Date.now() - startTime;
   });
-  
+
   reset.addEventListener('click', () => {
-    if(reset.classList.contains('inactive')===true){
+    if (reset.classList.contains('inactive') === true) {
       return;
     }
     setButtonStateInitial();
     timer.textContent = '00:00.000';
+    elapsedTime = 0;
+  });
+
+  rap.addEventListener('click', () => {
+    if (rap.classList.contains('inactive') === true) {
+      return;
+    }
+    const d = new Date(Date.now() - startTime + elapsedTime);
+    const m = String(d.getMinutes()).padStart(2, '0');
+    const s = String(d.getSeconds()).padStart(2, '0');
+    const ms = String(d.getMilliseconds()).padStart(3, '0');
+    recoad.textContent = `${m}:${s}.${ms}`;
+  });
+
+  rapreset.addEventListener('click', () => {
+    if (rapreset.classList.contains('inactive') === true) {
+      return;
+    }
+    recoad.textContent = '--:--.---';
     elapsedTime = 0;
   });
 }
