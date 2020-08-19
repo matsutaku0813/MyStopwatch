@@ -40,21 +40,38 @@ body{
   justify-content: space-between;
 }
 
-.inactive{
-  opacity: 0.6;
-}
-
 .btn1{
-  width: 100px;
-  height: 20px;
+  width: 120px;
+  height: 25px;
   line-height: 20px;
   background: #dddddd;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
   margin: auto;
+  border-radius: 5px;
+  text-align: center;
 }
 
-.recoad{
+.btn1:active{
+  height: 20px;
+  margin-top: 5px;
+}
+
+.inactive{
+  opacity: 0.6;
+  cursor: auto;
+  height: 45px !important;
+  margin-top: 0px !important;
+}
+
+.inactive1{
+  opacity: 0.6;
+  cursor: auto;
+  height: 25px !important;
+  margin-top: 0px !important;
+}
+
+.laptime{
   margin-top: 10px;
 }

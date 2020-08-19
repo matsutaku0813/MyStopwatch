@@ -4,9 +4,9 @@
   const start = document.getElementById('start');
   const stop = document.getElementById('stop');
   const reset = document.getElementById('reset');
-  const rap = document.getElementById('rap');
-  const recoad = document.getElementById('recoad');
-  const rapreset = document.getElementById('rapreset');
+  const lap = document.getElementById('lap');
+  const record = document.getElementById('record');
+  const lapreset = document.getElementById('lapreset');
 
   let startTime;
   let timeoutId;
@@ -29,19 +29,28 @@
     start.classList.remove('inactive');
     stop.classList.add('inactive');
     reset.classList.add('inactive');
-    rap.classList.add('inactive');
+    lap.classList.add('inactive');
+    lapreset.classList.add('inactive1');
   }
   function setButtonStateRunning() {
     start.classList.add('inactive');
     stop.classList.remove('inactive');
     reset.classList.add('inactive');
-    rap.classList.remove('inactive');
+    lap.classList.remove('inactive');
+    lapreset.classList.add('inactive1');
   }
   function setButtonStateStopped() {
     start.classList.remove('inactive');
     stop.classList.add('inactive');
     reset.classList.remove('inactive');
-    rap.classList.remove('inactive');
+    lap.classList.remove('inactive');
+    lapreset.classList.add('inactive1');
+  }
+  function setButtonStatelap() {
+    lapreset.classList.remove('inactive1');
+  }
+  function setButtonStatelapreset() {
+    lapreset.classList.add('inactive1');
   }
 
   setButtonStateInitial();
@@ -73,22 +82,20 @@
     elapsedTime = 0;
   });
 
-  rap.addEventListener('click', () => {
-    if (rap.classList.contains('inactive') === true) {
+  lap.addEventListener('click', () => {
+    if (lap.classList.contains('inactive') === true) {
       return;
     }
     const d = new Date(Date.now() - startTime + elapsedTime);
     const m = String(d.getMinutes()).padStart(2, '0');
     const s = String(d.getSeconds()).padStart(2, '0');
     const ms = String(d.getMilliseconds()).padStart(3, '0');
-    recoad.textContent = `${m}:${s}.${ms}`;
+    record.textContent = `${m}:${s}.${ms}`;
+    setButtonStatelap();
   });
 
-  rapreset.addEventListener('click', () => {
-    if (rapreset.classList.contains('inactive') === true) {
-      return;
-    }
-    recoad.textContent = '--:--.---';
-    elapsedTime = 0;
+  lapreset.addEventListener('click', () => {
+    record.textContent = '--:--.---';
+    setButtonStatelapreset();
   });
 }
